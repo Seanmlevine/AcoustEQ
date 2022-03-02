@@ -1,0 +1,6 @@
+framework module Pods_AcoustEQ {
+  umbrella header "Pods-AcoustEQ-umbrella.h"
+
+  export *
+  module * { export * }
+}
