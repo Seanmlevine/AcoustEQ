@@ -6,6 +6,7 @@
 import UIKit
 import AVFoundation
 
+
 class FreqRespViewController: UIViewController, setFreqResponseDelegate {
 
     
@@ -43,11 +44,10 @@ class FreqRespViewController: UIViewController, setFreqResponseDelegate {
         
         countdownTimer?.isHidden = true
         closeRecording?.isHidden = true
-        
         startAudio()
+
     
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         self.audioInput.startRecording()
 
@@ -88,13 +88,16 @@ class FreqRespViewController: UIViewController, setFreqResponseDelegate {
                 }
                 
             }
-            self.audioInput = TempiAudioInput(audioInputCallback: audioInputCallback, sampleRate: 44100, numberOfChannels: 1, bufferSize: Float(self.recordingBuffer))
+//            self.audioInput = TempiAudioInput(audioInputCallback: audioInputCallback, sampleRate: 44100, numberOfChannels: 1, bufferSize: Float(self.recordingBuffer))
+            self.audioInput = TempiAudioInput(audioInputCallback: audioInputCallback, sampleRate: 44100, numberOfChannels: 1, bufferSize: Float(self.regularBuffer))
             
             
             self.audioInput.startRecording() //record and stop recording after certain period of time
+            playSound(file: "sineSweep")
+
             
             //Record for length of buffer and stop recording
-            let totalRecordTime =  DispatchTimeInterval.seconds(Int(self.recordingBuffer/self.sampleRate))
+            let totalRecordTime =  DispatchTimeInterval.seconds(Int(self.recordingBuffer/self.sampleRate)+20)
             DispatchQueue.main.asyncAfter(deadline: .now() + totalRecordTime) { //change this value depending on the buffer size
                 self.audioInput.stopRecording()
                 self.micOn = false
@@ -121,28 +124,18 @@ class FreqRespViewController: UIViewController, setFreqResponseDelegate {
         self.dBMeteringOn()
         self.spectrumView.fft = TempiFFT(withSize: Int(self.regularBuffer), sampleRate: Float(self.sampleRate))
         let audioInputCallback: TempiAudioInputCallback = { (timeStamp, numberOfFrames, samples) -> Void in
-            
-//            DispatchQueue.global().async {
-//                self.dBMeteringOn()
                 
             tempi_dispatch_main { () -> () in
                 self.spectrumView.performFFT(inputBuffer: samples, bufferSize: Float(self.regularBuffer), bandsPerOctave: self.octaveBands, scale: self.scale)
             }
-//            }
             
         }
         
         self.audioInput = TempiAudioInput(audioInputCallback: audioInputCallback, sampleRate: 44100, numberOfChannels: 1, bufferSize: Float(self.regularBuffer))
         self.audioInput.startRecording()
         self.micOn = true
-        //TODO: Change the dBMeter text to the value continuously
-        //TODO: look up how to do Dispatch_async (what is @escaping)
-        //TODO: Use a timer to change the value of the meter (tab saved)
-
     }
     
-    //TODO: SEPERATE TIMER from this swift page
-    //Countdown selector used to change the timer
     @objc func updateCounter() {
         if(count > 0) {
             count -= 1
@@ -165,7 +158,7 @@ class FreqRespViewController: UIViewController, setFreqResponseDelegate {
     @objc func dBUpdate() {
         let dbfs = self.spectrumView.dBFS
         if micOn {
-            self.dBMeter.text = "\(dbfs)"
+            self.dBMeter.text = "\(Int(dbfs))"
         }
         else {
             dBValTimer.invalidate()
@@ -173,10 +166,9 @@ class FreqRespViewController: UIViewController, setFreqResponseDelegate {
     }
     
     func dBMeteringOn() {
-        //TODO: look at how PKC changes the decibel value
         
 //        dBValTimer.invalidate()
-        dBValTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(dBUpdate), userInfo: nil, repeats: true)
+        dBValTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(dBUpdate), userInfo: nil, repeats: true)
     }
     
     

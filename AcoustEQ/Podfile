@@ -7,5 +7,6 @@ target 'AcoustEQ' do
 
 pod 'SideMenu'
 pod 'Charts'
+pod 'CorePlot'
 
 end

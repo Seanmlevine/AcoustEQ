@@ -123,7 +123,7 @@ class TempiAudioInput: NSObject {
         }
         
         do {
-            try audioSession.setCategory(.record)
+            try audioSession.setCategory(.playAndRecord)
             
             // "Appropriate for applications that wish to minimize the effect of system-supplied signal processing for input and/or output audio signals."
             // NB: This turns off the high-pass filter that CoreAudio normally applies.

@@ -17,9 +17,7 @@ class SpectrumView: UIView {
 
     private var displayLink: CADisplayLink!
 
-    //try to change this on recording
-    // Change in size when settings are changed
-    // Make into non private var
+    // append user defaults when opened
     public var fft: TempiFFT = TempiFFT(withSize: 2048, sampleRate: Float(44100.0))
     public var dBFS: Float = 0.0
     
@@ -57,6 +55,9 @@ class SpectrumView: UIView {
         let points: [CGPoint] = fftSamples.enumerated().map { i, samp in
             let x = bounds.width * CGFloat(i) / CGFloat(fftSamples.count)
             let height = CGFloat(samp) * bounds.height
+//            print(samp)
+//            print(height)
+            //bounds.height = 646
             //for inverse, do CGFloat(1-samp)
             return CGPoint(x: x, y: bounds.height - height)
         }
@@ -118,14 +119,14 @@ class SpectrumView: UIView {
         
         let maxDB: Float = 180
         // look up best practice for dBRef value!
-        let dbRef: Float = 0.00002 
+        let dbRef: Float = 0.000002
         var fftArray: [Float] = []
 
         for i in 0..<fft.numberOfBands {
             let mag = fft.magnitudeAtBand(i) * 2 / bufferSize //Change value here for buffer size (compensate for positive and negative frequency values)
             
-            // dBX shows graph values from 120 to -40
-            let db = ((20 * log10f(mag / dbRef)) / maxDB).clamped(to: -40...120)
+            // dBX shows graph values from 120 to -80
+            let db = ((20 * log10f(mag / dbRef)) / maxDB).clamped(to: -80...120)
             
             fftArray.append(db)
             
@@ -158,7 +159,7 @@ class SpectrumView: UIView {
         // multiply by 2 to compensate for nyquist, averaged and converted to dB
         
         // divide buffer size by two because the size of the magnitudes array is the length of half the buffersize
-        self.dBFS = toDB( (sumMag * 2) / (bufferSize/2))
+        self.dBFS = toDB( (sumMag * 2) / (bufferSize/2)) + 70
         // Find and hold the max value
 
     }
