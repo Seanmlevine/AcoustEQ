@@ -103,6 +103,22 @@
             </objects>
             <point key="canvasLocation" x="1937.68115942029" y="194.86607142857142"/>
         </scene>
+        <!--Recording-->
+        <scene sceneID="RNp-j6-z5e">
+            <objects>
+                <viewController id="KxY-Ya-d6n" customClass="AVAudioRecordingViewController" customModule="AcoustEQ" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LlV-no-VD7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="L9z-LA-X83"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Recording" image="record.circle" catalog="system" id="Hyw-Vs-NfJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FJR-lH-yRH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1965" y="1000"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="9hK-Gp-mSp">
             <objects>
@@ -243,6 +259,7 @@
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="b9c-Dz-7sF"/>
                         <segue destination="bGz-Ar-nAS" kind="relationship" relationship="viewControllers" id="kCO-qW-hXs"/>
+                        <segue destination="KxY-Ya-d6n" kind="relationship" relationship="viewControllers" id="0Sx-cN-QcU"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mqb-vY-iPH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -259,6 +276,9 @@
         <image name="waveform.circle" catalog="system" width="128" height="121"/>
         <systemColor name="quaternaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

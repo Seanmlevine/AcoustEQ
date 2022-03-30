@@ -9,14 +9,6 @@
 /* Begin PBXBuildFile section */
 		2438BC1027E13DFB0098A020 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2438BC0E27E13DFB0098A020 /* HealthKit.framework */; };
 		2438BC1127E13DFB0098A020 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2438BC0F27E13DFB0098A020 /* HealthKitUI.framework */; };
-		2438BC1727E151230098A020 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2438BC1627E151230098A020 /* AudioKit */; };
-		2438BC1A27E151660098A020 /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2438BC1927E151660098A020 /* AudioKitUI */; };
-		2438BC1D27E1522F0098A020 /* MorphingOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438BC1C27E1522F0098A020 /* MorphingOscillator.swift */; };
-		2438BC2027E154960098A020 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2438BC1F27E154960098A020 /* SoundpipeAudioKit */; };
-		2438BC2227E155250098A020 /* ParameterSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438BC2127E155250098A020 /* ParameterSlider.swift */; };
-		2438BC2427E1553A0098A020 /* KeyboardControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438BC2327E1553A0098A020 /* KeyboardControl.swift */; };
-		2438BC2627E15C180098A020 /* NoiseGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438BC2527E15C180098A020 /* NoiseGenerators.swift */; };
-		2438BC2827E1615B0098A020 /* SineSweepOsc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438BC2727E1615B0098A020 /* SineSweepOsc.swift */; };
 		244DD3A3275715240097EDC1 /* SpectrumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244DD3A2275715240097EDC1 /* SpectrumView.swift */; };
 		244DD3A8275717370097EDC1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244DD3A7275717370097EDC1 /* Extensions.swift */; };
 		24578E0627F3F1B40064E943 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24578E0527F3F1B40064E943 /* TabBarController.swift */; };
@@ -26,7 +18,7 @@
 		2468455427F1562900A4B16F /* averageFFT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2468455327F1562900A4B16F /* averageFFT.swift */; };
 		246AA41927B2B94E00169AF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246AA41827B2B94E00169AF9 /* AppDelegate.swift */; };
 		246AA5F627B42BF700F92C75 /* dBMetering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246AA5F527B42BF700F92C75 /* dBMetering.swift */; };
-		249D59F827580CB9006F25EC /* FreqRespViewControllerSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249D59F727580CB9006F25EC /* FreqRespViewControllerSide.swift */; };
+		2481A15127F4E612000553D3 /* AVAudioRecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2481A15027F4E612000553D3 /* AVAudioRecordingViewController.swift */; };
 		24BFCEE62739758B00C90032 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BFCEE52739758B00C90032 /* SceneDelegate.swift */; };
 		24BFCEE82739758B00C90032 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BFCEE72739758B00C90032 /* MainViewController.swift */; };
 		24BFCEFB2739758D00C90032 /* AcoustEQTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BFCEFA2739758D00C90032 /* AcoustEQTests.swift */; };
@@ -40,11 +32,7 @@
 		24BFCF2E273977DA00C90032 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24BFCEEE2739758D00C90032 /* LaunchScreen.storyboard */; };
 		24BFCF2F273977DC00C90032 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24BFCEE92739758B00C90032 /* Main.storyboard */; };
 		24BFCF352739786400C90032 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24BFCF342739786400C90032 /* Assets.xcassets */; };
-		24DDF058276030E100F83687 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DDF057276030E100F83687 /* Protocols.swift */; };
-		24DDF05F27603BB000F83687 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DDF05E27603BB000F83687 /* MenuController.swift */; };
 		24DDF0612760421000F83687 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DDF0602760421000F83687 /* SettingsViewController.swift */; };
-		24DDF0632760421A00F83687 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DDF0622760421A00F83687 /* InfoViewController.swift */; };
-		24DDF06627604A0800F83687 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DDF06527604A0800F83687 /* HomeViewController.swift */; };
 		24DDF068276050E800F83687 /* FreqRespViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DDF067276050E800F83687 /* FreqRespViewController.swift */; };
 		74202A6E2C93D6069EBC5E3F /* Pods_AcoustEQ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A047822ACB2BA7054F2A671 /* Pods_AcoustEQ.framework */; };
 /* End PBXBuildFile section */
@@ -69,11 +57,6 @@
 /* Begin PBXFileReference section */
 		2438BC0E27E13DFB0098A020 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		2438BC0F27E13DFB0098A020 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
-		2438BC1C27E1522F0098A020 /* MorphingOscillator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorphingOscillator.swift; sourceTree = "<group>"; };
-		2438BC2127E155250098A020 /* ParameterSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterSlider.swift; sourceTree = "<group>"; };
-		2438BC2327E1553A0098A020 /* KeyboardControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardControl.swift; sourceTree = "<group>"; };
-		2438BC2527E15C180098A020 /* NoiseGenerators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoiseGenerators.swift; sourceTree = "<group>"; };
-		2438BC2727E1615B0098A020 /* SineSweepOsc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SineSweepOsc.swift; sourceTree = "<group>"; };
 		244DD3A2275715240097EDC1 /* SpectrumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectrumView.swift; sourceTree = "<group>"; };
 		244DD3A7275717370097EDC1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		24578E0527F3F1B40064E943 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = AcoustEQ/Controllers/TabBarController.swift; sourceTree = SOURCE_ROOT; };
@@ -83,7 +66,7 @@
 		2468455327F1562900A4B16F /* averageFFT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = averageFFT.swift; path = /Users/seanlevine/GT/Capstone/AcoustEQ/AcoustEQ/AcoustEQ/averageFFT.swift; sourceTree = "<absolute>"; };
 		246AA41827B2B94E00169AF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TempiFFT/AppDelegate.swift; sourceTree = "<group>"; };
 		246AA5F527B42BF700F92C75 /* dBMetering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = dBMetering.swift; path = AcoustEQ/Utils/dBMetering.swift; sourceTree = SOURCE_ROOT; };
-		249D59F727580CB9006F25EC /* FreqRespViewControllerSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreqRespViewControllerSide.swift; sourceTree = "<group>"; };
+		2481A15027F4E612000553D3 /* AVAudioRecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AVAudioRecordingViewController.swift; path = AcoustEQ/Controllers/AVAudioRecordingViewController.swift; sourceTree = SOURCE_ROOT; };
 		24BFCEE02739758B00C90032 /* AcoustEQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcoustEQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24BFCEE52739758B00C90032 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		24BFCEE72739758B00C90032 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -101,11 +84,7 @@
 		24BFCF1F273975C800C90032 /* TempiAudioInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempiAudioInput.swift; sourceTree = "<group>"; };
 		24BFCF342739786400C90032 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24BFCF382739799700C90032 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		24DDF057276030E100F83687 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		24DDF05E27603BB000F83687 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		24DDF0602760421000F83687 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		24DDF0622760421A00F83687 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		24DDF06527604A0800F83687 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		24DDF067276050E800F83687 /* FreqRespViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreqRespViewController.swift; sourceTree = "<group>"; };
 		2BB0A1AB0D23761E47B57CC4 /* Pods-AcoustEQ.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AcoustEQ.debug.xcconfig"; path = "Target Support Files/Pods-AcoustEQ/Pods-AcoustEQ.debug.xcconfig"; sourceTree = "<group>"; };
 		3A047822ACB2BA7054F2A671 /* Pods_AcoustEQ.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AcoustEQ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,10 +97,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				74202A6E2C93D6069EBC5E3F /* Pods_AcoustEQ.framework in Frameworks */,
-				2438BC1A27E151660098A020 /* AudioKitUI in Frameworks */,
-				2438BC2027E154960098A020 /* SoundpipeAudioKit in Frameworks */,
 				2438BC1027E13DFB0098A020 /* HealthKit.framework in Frameworks */,
-				2438BC1727E151230098A020 /* AudioKit in Frameworks */,
 				2438BC1127E13DFB0098A020 /* HealthKitUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,18 +129,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2438BC1B27E1520E0098A020 /* AudioKit */ = {
-			isa = PBXGroup;
-			children = (
-				2438BC1C27E1522F0098A020 /* MorphingOscillator.swift */,
-				2438BC2727E1615B0098A020 /* SineSweepOsc.swift */,
-				2438BC2527E15C180098A020 /* NoiseGenerators.swift */,
-				2438BC2327E1553A0098A020 /* KeyboardControl.swift */,
-				2438BC2127E155250098A020 /* ParameterSlider.swift */,
-			);
-			path = AudioKit;
-			sourceTree = "<group>";
-		};
 		244DD3A6275717110097EDC1 /* Other */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,7 +142,6 @@
 			children = (
 				24BFCEE22739758B00C90032 /* AcoustEQ */,
 				244DD3A6275717110097EDC1 /* Other */,
-				24DDF0692760593600F83687 /* Deprecated */,
 				24BFCEF92739758D00C90032 /* AcoustEQTests */,
 				24BFCF032739758D00C90032 /* AcoustEQUITests */,
 				24BFCEE12739758B00C90032 /* Products */,
@@ -251,7 +214,6 @@
 			children = (
 				246AA5F527B42BF700F92C75 /* dBMetering.swift */,
 				2468454D27EE5AE900A4B16F /* AVAudioPlayer.swift */,
-				24DDF057276030E100F83687 /* Protocols.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -259,6 +221,7 @@
 		24DDF05A276031D200F83687 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2481A15027F4E612000553D3 /* AVAudioRecordingViewController.swift */,
 				24578E0527F3F1B40064E943 /* TabBarController.swift */,
 				24BFCEE72739758B00C90032 /* MainViewController.swift */,
 				24DDF067276050E800F83687 /* FreqRespViewController.swift */,
@@ -274,18 +237,6 @@
 			);
 			name = Views;
 			path = Controllers/Views;
-			sourceTree = "<group>";
-		};
-		24DDF0692760593600F83687 /* Deprecated */ = {
-			isa = PBXGroup;
-			children = (
-				2438BC1B27E1520E0098A020 /* AudioKit */,
-				24DDF06527604A0800F83687 /* HomeViewController.swift */,
-				24DDF0622760421A00F83687 /* InfoViewController.swift */,
-				24DDF05E27603BB000F83687 /* MenuController.swift */,
-				249D59F727580CB9006F25EC /* FreqRespViewControllerSide.swift */,
-			);
-			path = Deprecated;
 			sourceTree = "<group>";
 		};
 		C2443C440C9A9A8B54AE6FD8 /* Pods */ = {
@@ -316,9 +267,6 @@
 			);
 			name = AcoustEQ;
 			packageProductDependencies = (
-				2438BC1627E151230098A020 /* AudioKit */,
-				2438BC1927E151660098A020 /* AudioKitUI */,
-				2438BC1F27E154960098A020 /* SoundpipeAudioKit */,
 			);
 			productName = AcoustEQ;
 			productReference = 24BFCEE02739758B00C90032 /* AcoustEQ.app */;
@@ -393,9 +341,6 @@
 			);
 			mainGroup = 24BFCED72739758B00C90032;
 			packageReferences = (
-				2438BC1527E151230098A020 /* XCRemoteSwiftPackageReference "AudioKit" */,
-				2438BC1827E151660098A020 /* XCRemoteSwiftPackageReference "AudioKitUI" */,
-				2438BC1E27E154960098A020 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */,
 			);
 			productRefGroup = 24BFCEE12739758B00C90032 /* Products */;
 			projectDirPath = "";
@@ -484,32 +429,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2438BC2427E1553A0098A020 /* KeyboardControl.swift in Sources */,
 				24BFCF22273975C800C90032 /* SpectralViewController.swift in Sources */,
 				24BFCEE82739758B00C90032 /* MainViewController.swift in Sources */,
-				249D59F827580CB9006F25EC /* FreqRespViewControllerSide.swift in Sources */,
 				24BFCF2A273975C800C90032 /* TempiAudioInput.swift in Sources */,
-				2438BC2227E155250098A020 /* ParameterSlider.swift in Sources */,
-				24DDF0632760421A00F83687 /* InfoViewController.swift in Sources */,
 				244DD3A3275715240097EDC1 /* SpectrumView.swift in Sources */,
 				24BFCF24273975C800C90032 /* SpectralView.swift in Sources */,
 				24DDF068276050E800F83687 /* FreqRespViewController.swift in Sources */,
-				24DDF058276030E100F83687 /* Protocols.swift in Sources */,
+				2481A15127F4E612000553D3 /* AVAudioRecordingViewController.swift in Sources */,
 				24BFCF27273975C800C90032 /* TempiFFT.swift in Sources */,
 				2468455427F1562900A4B16F /* averageFFT.swift in Sources */,
 				24DDF0612760421000F83687 /* SettingsViewController.swift in Sources */,
-				24DDF06627604A0800F83687 /* HomeViewController.swift in Sources */,
 				24BFCF29273975C800C90032 /* TempiUtilities.swift in Sources */,
 				244DD3A8275717370097EDC1 /* Extensions.swift in Sources */,
 				24578E0627F3F1B40064E943 /* TabBarController.swift in Sources */,
-				24DDF05F27603BB000F83687 /* MenuController.swift in Sources */,
 				2468454E27EE5AE900A4B16F /* AVAudioPlayer.swift in Sources */,
-				2438BC1D27E1522F0098A020 /* MorphingOscillator.swift in Sources */,
 				246AA41927B2B94E00169AF9 /* AppDelegate.swift in Sources */,
 				246AA5F627B42BF700F92C75 /* dBMetering.swift in Sources */,
 				24BFCEE62739758B00C90032 /* SceneDelegate.swift in Sources */,
-				2438BC2827E1615B0098A020 /* SineSweepOsc.swift in Sources */,
-				2438BC2627E15C180098A020 /* NoiseGenerators.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -879,54 +815,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		2438BC1527E151230098A020 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AudioKit/AudioKit.git";
-			requirement = {
-				kind = versionRange;
-				maximumVersion = 6.0.0;
-				minimumVersion = 5.0.0;
-			};
-		};
-		2438BC1827E151660098A020 /* XCRemoteSwiftPackageReference "AudioKitUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AudioKit/AudioKitUI.git";
-			requirement = {
-				kind = versionRange;
-				maximumVersion = 1.0.0;
-				minimumVersion = 0.1.5;
-			};
-		};
-		2438BC1E27E154960098A020 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AudioKit/SoundpipeAudioKit.git";
-			requirement = {
-				kind = versionRange;
-				maximumVersion = 6.0.0;
-				minimumVersion = 5.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		2438BC1627E151230098A020 /* AudioKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2438BC1527E151230098A020 /* XCRemoteSwiftPackageReference "AudioKit" */;
-			productName = AudioKit;
-		};
-		2438BC1927E151660098A020 /* AudioKitUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2438BC1827E151660098A020 /* XCRemoteSwiftPackageReference "AudioKitUI" */;
-			productName = AudioKitUI;
-		};
-		2438BC1F27E154960098A020 /* SoundpipeAudioKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2438BC1E27E154960098A020 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */;
-			productName = SoundpipeAudioKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 24BFCED82739758B00C90032 /* Project object */;
 }

@@ -169,7 +169,7 @@ class FreqRespViewController: UIViewController, setFreqResponseDelegate {
         }
     }
     
-    func dBMeteringOn() {
+    func dBMeteringOn() {  
         dBValTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(dBUpdate), userInfo: nil, repeats: true)
     }
     
