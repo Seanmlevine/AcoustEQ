@@ -17,9 +17,9 @@
 		2438BC2427E1553A0098A020 /* KeyboardControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438BC2327E1553A0098A020 /* KeyboardControl.swift */; };
 		2438BC2627E15C180098A020 /* NoiseGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438BC2527E15C180098A020 /* NoiseGenerators.swift */; };
 		2438BC2827E1615B0098A020 /* SineSweepOsc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438BC2727E1615B0098A020 /* SineSweepOsc.swift */; };
-		243936F327D6CB8700CD90BE /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243936F227D6CB8700CD90BE /* GraphView.swift */; };
 		244DD3A3275715240097EDC1 /* SpectrumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244DD3A2275715240097EDC1 /* SpectrumView.swift */; };
 		244DD3A8275717370097EDC1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244DD3A7275717370097EDC1 /* Extensions.swift */; };
+		24578E0627F3F1B40064E943 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24578E0527F3F1B40064E943 /* TabBarController.swift */; };
 		2468454E27EE5AE900A4B16F /* AVAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2468454D27EE5AE900A4B16F /* AVAudioPlayer.swift */; };
 		2468455027EE5F2600A4B16F /* pinkNoise.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2468454F27EE5F2600A4B16F /* pinkNoise.wav */; };
 		2468455227EE614500A4B16F /* sineSweep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2468455127EE614500A4B16F /* sineSweep.wav */; };
@@ -74,9 +74,9 @@
 		2438BC2327E1553A0098A020 /* KeyboardControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardControl.swift; sourceTree = "<group>"; };
 		2438BC2527E15C180098A020 /* NoiseGenerators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoiseGenerators.swift; sourceTree = "<group>"; };
 		2438BC2727E1615B0098A020 /* SineSweepOsc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SineSweepOsc.swift; sourceTree = "<group>"; };
-		243936F227D6CB8700CD90BE /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		244DD3A2275715240097EDC1 /* SpectrumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectrumView.swift; sourceTree = "<group>"; };
 		244DD3A7275717370097EDC1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		24578E0527F3F1B40064E943 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = AcoustEQ/Controllers/TabBarController.swift; sourceTree = SOURCE_ROOT; };
 		2468454D27EE5AE900A4B16F /* AVAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioPlayer.swift; sourceTree = "<group>"; };
 		2468454F27EE5F2600A4B16F /* pinkNoise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pinkNoise.wav; sourceTree = SOURCE_ROOT; };
 		2468455127EE614500A4B16F /* sineSweep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sineSweep.wav; sourceTree = SOURCE_ROOT; };
@@ -209,7 +209,6 @@
 				24BFCEEE2739758D00C90032 /* LaunchScreen.storyboard */,
 				24BFCF342739786400C90032 /* Assets.xcassets */,
 				24BFCF382739799700C90032 /* Info.plist */,
-				2468454D27EE5AE900A4B16F /* AVAudioPlayer.swift */,
 				2468455327F1562900A4B16F /* averageFFT.swift */,
 				2468455127EE614500A4B16F /* sineSweep.wav */,
 				2468454F27EE5F2600A4B16F /* pinkNoise.wav */,
@@ -251,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				246AA5F527B42BF700F92C75 /* dBMetering.swift */,
+				2468454D27EE5AE900A4B16F /* AVAudioPlayer.swift */,
 				24DDF057276030E100F83687 /* Protocols.swift */,
 			);
 			path = Utils;
@@ -259,6 +259,7 @@
 		24DDF05A276031D200F83687 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				24578E0527F3F1B40064E943 /* TabBarController.swift */,
 				24BFCEE72739758B00C90032 /* MainViewController.swift */,
 				24DDF067276050E800F83687 /* FreqRespViewController.swift */,
 				24DDF0602760421000F83687 /* SettingsViewController.swift */,
@@ -270,7 +271,6 @@
 			isa = PBXGroup;
 			children = (
 				244DD3A2275715240097EDC1 /* SpectrumView.swift */,
-				243936F227D6CB8700CD90BE /* GraphView.swift */,
 			);
 			name = Views;
 			path = Controllers/Views;
@@ -501,6 +501,7 @@
 				24DDF06627604A0800F83687 /* HomeViewController.swift in Sources */,
 				24BFCF29273975C800C90032 /* TempiUtilities.swift in Sources */,
 				244DD3A8275717370097EDC1 /* Extensions.swift in Sources */,
+				24578E0627F3F1B40064E943 /* TabBarController.swift in Sources */,
 				24DDF05F27603BB000F83687 /* MenuController.swift in Sources */,
 				2468454E27EE5AE900A4B16F /* AVAudioPlayer.swift in Sources */,
 				2438BC1D27E1522F0098A020 /* MorphingOscillator.swift in Sources */,
@@ -508,7 +509,6 @@
 				246AA5F627B42BF700F92C75 /* dBMetering.swift in Sources */,
 				24BFCEE62739758B00C90032 /* SceneDelegate.swift in Sources */,
 				2438BC2827E1615B0098A020 /* SineSweepOsc.swift in Sources */,
-				243936F327D6CB8700CD90BE /* GraphView.swift in Sources */,
 				2438BC2627E15C180098A020 /* NoiseGenerators.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

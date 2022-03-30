@@ -36,6 +36,7 @@ class FreqRespViewController: UIViewController, setFreqResponseDelegate {
     var regularBuffer = 2048.0
     var octaveBands = 8
     var scale = "Logarithm"
+    
     private var micOn: Bool = false
     
     
@@ -50,6 +51,9 @@ class FreqRespViewController: UIViewController, setFreqResponseDelegate {
     }
     override func viewDidAppear(_ animated: Bool) {
         self.audioInput.startRecording()
+        regularBuffer = UserDefaults.standard.double(forKey: "frameSizeVal")
+        octaveBands = UserDefaults.standard.integer(forKey: "octaveBandsVal")
+        scale = UserDefaults.standard.string(forKey: "scaleVal") ?? "Logarithm"
 
     }
     
@@ -153,12 +157,12 @@ class FreqRespViewController: UIViewController, setFreqResponseDelegate {
         recTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
     }
     
-    //TODO: dBMeter
+    //MARK: dBMeter
     
     @objc func dBUpdate() {
         let dbfs = self.spectrumView.dBFS
         if micOn {
-            self.dBMeter.text = "\(Int(dbfs))"
+            self.dBMeter.text = "dBA: \(Int(dbfs))"
         }
         else {
             dBValTimer.invalidate()
@@ -166,21 +170,19 @@ class FreqRespViewController: UIViewController, setFreqResponseDelegate {
     }
     
     func dBMeteringOn() {
-        
-//        dBValTimer.invalidate()
         dBValTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(dBUpdate), userInfo: nil, repeats: true)
     }
     
     
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "getSettingsSegue"{
-            let settings: SettingsViewController = segue.destination as! SettingsViewController
-            settings.delegate = self
-        }
-    }
-    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "getSettingsSegue"{
+//            let settings: SettingsViewController = segue.destination as! SettingsViewController
+//            settings.delegate = self
+//        }
+//    }
+//
     
 
     override func didReceiveMemoryWarning() {

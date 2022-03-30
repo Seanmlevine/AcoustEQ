@@ -35,7 +35,6 @@ class SettingsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    //TODO: FIX CORRECT PARAMS ON LOAD (USER DEFAULT)
     override func viewWillAppear(_ animated: Bool) {
         let fr_index = UserDefaults.standard.integer(forKey: "frameSize")
         frameSizeControl.selectedSegmentIndex = fr_index
