@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import MediaPlayer
+import AVKit
 import AVFoundation
 
 class AVAudioRecordingViewController: UIViewController, AVAudioRecorderDelegate {
@@ -16,6 +18,7 @@ class AVAudioRecordingViewController: UIViewController, AVAudioRecorderDelegate 
     var playButton: UIButton!
 
     var recordingSession: AVAudioSession!
+    // TODO: - change names to fit my Use Case
     var whistleRecorder: AVAudioRecorder!
     var whistlePlayer: AVAudioPlayer!
 
@@ -40,13 +43,13 @@ class AVAudioRecordingViewController: UIViewController, AVAudioRecorderDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Record your whistle"
+        title = "Record"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Record", style: .plain, target: nil, action: nil)
 
         recordingSession = AVAudioSession.sharedInstance()
 
         do {
-            try recordingSession.setCategory(.playAndRecord, mode: .default)
+            try recordingSession.setCategory(.playAndRecord, mode: .default, options: [.allowBluetooth, .defaultToSpeaker])
             try recordingSession.setActive(true)
             recordingSession.requestRecordPermission() { [unowned self] allowed in
                 DispatchQueue.main.async {
@@ -60,6 +63,8 @@ class AVAudioRecordingViewController: UIViewController, AVAudioRecorderDelegate 
         } catch {
             self.loadFailUI()
         }
+        
+        setAirplayButton()
     }
     
     // MARK: - Loading Options if Permission fails
@@ -70,7 +75,18 @@ class AVAudioRecordingViewController: UIViewController, AVAudioRecorderDelegate 
         recordButton.setTitle("Tap to Record", for: .normal)
         recordButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
         recordButton.addTarget(self, action: #selector(recordTapped), for: .touchUpInside)
+        
+        playButton = UIButton()
+        playButton.translatesAutoresizingMaskIntoConstraints = false
+        playButton.setTitle("Tap to Play", for: .normal)
+        playButton.isHidden = true
+        playButton.alpha = 0
+        playButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
+        playButton.addTarget(self, action: #selector(playTapped), for: .touchUpInside)
+        
+        stackView.addArrangedSubview(playButton)
         stackView.addArrangedSubview(recordButton)
+        
     }
 
     func loadFailUI() {
@@ -92,7 +108,7 @@ class AVAudioRecordingViewController: UIViewController, AVAudioRecorderDelegate 
 
     class func getWhistleURL() -> URL {
         // TODO: - Change File Name
-        return getDocumentsDirectory().appendingPathComponent("whistle.m4a")
+        return getDocumentsDirectory().appendingPathComponent("whistle.wav")
     }
 
     func startRecording() {
@@ -107,15 +123,18 @@ class AVAudioRecordingViewController: UIViewController, AVAudioRecorderDelegate 
         print(audioURL.absoluteString)
 
         // 4
+        // TODO: - Change Settings if Necessary
+        // https://blog.devgenius.io/ios-avfoundation-series-part-1-4eebaa837d9c
         let settings = [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            AVSampleRateKey: 12000,
+            AVFormatIDKey: Int(kAudioFormatLinearPCM),
+            AVSampleRateKey: 44100,
             AVNumberOfChannelsKey: 1,
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
 
         do {
             // 5
+            try recordingSession.setCategory(.playAndRecord, mode: .measurement, options: [.allowBluetooth, .defaultToSpeaker])
             whistleRecorder = try AVAudioRecorder(url: audioURL, settings: settings)
             whistleRecorder.delegate = self
             whistleRecorder.record()
@@ -129,26 +148,44 @@ class AVAudioRecordingViewController: UIViewController, AVAudioRecorderDelegate 
 
         whistleRecorder.stop()
         whistleRecorder = nil
+        stopSound()
 
         if success {
             recordButton.setTitle("Tap to Re-record", for: .normal)
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextTapped))
+            
+            
+            // navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextTapped))
         } else {
             recordButton.setTitle("Tap to Record", for: .normal)
 
-            let ac = UIAlertController(title: "Record failed", message: "There was a problem recording your whistle; please try again.", preferredStyle: .alert)
+            let ac = UIAlertController(title: "Record failed", message: "There was a problem recording; please try again.", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default))
             present(ac, animated: true)
         }
+        
+        if playButton.isHidden {
+            UIView.animate(withDuration: 0.35) { [unowned self] in
+                self.playButton.isHidden = false
+                self.playButton.alpha = 1
+            }
+        }
     }
     
-    @objc func nextTapped() {
-
-    }
+//    @objc func nextTapped() {
+//
+//    }
     
     @objc func recordTapped() {
         if whistleRecorder == nil {
             startRecording()
+//            playSound(file: "sineSweep")
+            if !playButton.isHidden {
+                UIView.animate(withDuration: 0.35) { [unowned self] in
+                    self.playButton.isHidden = true
+                    self.playButton.alpha = 0
+                }
+            }
+            
         } else {
             finishRecording(success: true)
         }
@@ -160,6 +197,37 @@ class AVAudioRecordingViewController: UIViewController, AVAudioRecorderDelegate 
         }
     }
     
+    @objc func playTapped() {
+        let audioURL = AVAudioRecordingViewController.getWhistleURL()
+
+        do {
+            whistlePlayer = try AVAudioPlayer(contentsOf: audioURL)
+            whistlePlayer.play()
+        } catch {
+            let ac = UIAlertController(title: "Playback failed", message: "There was a problem playing your recording; please try re-recording.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }
+        
+        do {
+            try recordingSession.setCategory(.playback, mode: .default)
+
+        } catch {
+            let ac = UIAlertController(title: "Audio Routing Failed", message: "There was a problem routing to playback", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }
+
+    }
+    
+    func setAirplayButton(){
+        let buttonView  = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        let routerPickerView =  AVRoutePickerView(frame: buttonView.bounds)
+         routerPickerView.tintColor = UIColor.green
+         routerPickerView.activeTintColor = .white
+         buttonView.addSubview(routerPickerView)
+        self.stackView.addSubview(buttonView)
+      }
     
 
 }

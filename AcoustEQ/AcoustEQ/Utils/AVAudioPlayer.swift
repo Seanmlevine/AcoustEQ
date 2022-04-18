@@ -26,3 +26,8 @@ func playSound(file: String) {
     }
 }
 
+func stopSound() {
+    player?.stop()
+    
+}
+

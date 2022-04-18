@@ -45,21 +45,20 @@ class FreqRespViewController: UIViewController, setFreqResponseDelegate {
         
         countdownTimer?.isHidden = true
         closeRecording?.isHidden = true
-        startAudio()
-
     
     }
     override func viewDidAppear(_ animated: Bool) {
-        self.audioInput.startRecording()
         regularBuffer = UserDefaults.standard.double(forKey: "frameSizeVal")
         octaveBands = UserDefaults.standard.integer(forKey: "octaveBandsVal")
         scale = UserDefaults.standard.string(forKey: "scaleVal") ?? "Logarithm"
+        startAudio()
+        micOn = true
 
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         self.audioInput.stopRecording()
-        self.micOn = false
+        micOn = false
     }
     
     //TODO: Play-Pause Button
@@ -88,7 +87,7 @@ class FreqRespViewController: UIViewController, setFreqResponseDelegate {
                 // somehow change the numberOfFrames in callback and spectrumView
                 tempi_dispatch_main { () -> () in
                     //self.spectrumView.fft = TempiFFT(withSize: recordingBuffer, sampleRate: sampleRate)
-                    self.spectrumView.performFFT(inputBuffer: samples, bufferSize: Float(2048.0), bandsPerOctave: self.octaveBands, scale: self.scale)
+                    self.spectrumView.performFFT(inputBuffer: samples, bufferSize: Float(self.regularBuffer), bandsPerOctave: self.octaveBands, scale: self.scale)
                 }
                 
             }
@@ -162,7 +161,7 @@ class FreqRespViewController: UIViewController, setFreqResponseDelegate {
     @objc func dBUpdate() {
         let dbfs = self.spectrumView.dBFS
         if micOn {
-            self.dBMeter.text = "dBA: \(Int(dbfs))"
+            self.dBMeter.text = "dBC: \(Int(dbfs))"
         }
         else {
             dBValTimer.invalidate()

@@ -9,6 +9,8 @@ import Foundation
 
 private var needsNewFFT: Bool = false
 
+// TODO: - Average FFT, Average dB
+
 var averageFFT: TempiFFT = TempiFFT(withSize: 2048, sampleRate: Float(44100.0))
 
 private var fftSamples: [Float] = []

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2438BC1027E13DFB0098A020 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2438BC0E27E13DFB0098A020 /* HealthKit.framework */; };
-		2438BC1127E13DFB0098A020 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2438BC0F27E13DFB0098A020 /* HealthKitUI.framework */; };
 		244DD3A3275715240097EDC1 /* SpectrumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244DD3A2275715240097EDC1 /* SpectrumView.swift */; };
 		244DD3A8275717370097EDC1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244DD3A7275717370097EDC1 /* Extensions.swift */; };
 		24578E0627F3F1B40064E943 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24578E0527F3F1B40064E943 /* TabBarController.swift */; };
@@ -55,14 +53,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2438BC0E27E13DFB0098A020 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		2438BC0F27E13DFB0098A020 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
 		244DD3A2275715240097EDC1 /* SpectrumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectrumView.swift; sourceTree = "<group>"; };
 		244DD3A7275717370097EDC1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		24578E0527F3F1B40064E943 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = AcoustEQ/Controllers/TabBarController.swift; sourceTree = SOURCE_ROOT; };
 		2468454D27EE5AE900A4B16F /* AVAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioPlayer.swift; sourceTree = "<group>"; };
-		2468454F27EE5F2600A4B16F /* pinkNoise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pinkNoise.wav; sourceTree = SOURCE_ROOT; };
-		2468455127EE614500A4B16F /* sineSweep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sineSweep.wav; sourceTree = SOURCE_ROOT; };
+		2468454F27EE5F2600A4B16F /* pinkNoise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = pinkNoise.wav; path = AcoustEQ/AudioFiles/pinkNoise.wav; sourceTree = SOURCE_ROOT; };
+		2468455127EE614500A4B16F /* sineSweep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sineSweep.wav; path = AcoustEQ/AudioFiles/sineSweep.wav; sourceTree = SOURCE_ROOT; };
 		2468455327F1562900A4B16F /* averageFFT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = averageFFT.swift; path = /Users/seanlevine/GT/Capstone/AcoustEQ/AcoustEQ/AcoustEQ/averageFFT.swift; sourceTree = "<absolute>"; };
 		246AA41827B2B94E00169AF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TempiFFT/AppDelegate.swift; sourceTree = "<group>"; };
 		246AA5F527B42BF700F92C75 /* dBMetering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = dBMetering.swift; path = AcoustEQ/Utils/dBMetering.swift; sourceTree = SOURCE_ROOT; };
@@ -97,8 +93,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				74202A6E2C93D6069EBC5E3F /* Pods_AcoustEQ.framework in Frameworks */,
-				2438BC1027E13DFB0098A020 /* HealthKit.framework in Frameworks */,
-				2438BC1127E13DFB0098A020 /* HealthKitUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,8 +116,6 @@
 		1BA9E5FA0A018EECDAB3D759 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2438BC0E27E13DFB0098A020 /* HealthKit.framework */,
-				2438BC0F27E13DFB0098A020 /* HealthKitUI.framework */,
 				3A047822ACB2BA7054F2A671 /* Pods_AcoustEQ.framework */,
 			);
 			name = Frameworks;
@@ -135,6 +127,15 @@
 				244DD3A7275717370097EDC1 /* Extensions.swift */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		2481A15227F4FD98000553D3 /* AudioFiles */ = {
+			isa = PBXGroup;
+			children = (
+				2468455127EE614500A4B16F /* sineSweep.wav */,
+				2468454F27EE5F2600A4B16F /* pinkNoise.wav */,
+			);
+			path = AudioFiles;
 			sourceTree = "<group>";
 		};
 		24BFCED72739758B00C90032 = {
@@ -168,13 +169,11 @@
 				24DDF059276031C500F83687 /* Utils */,
 				24DDF05A276031D200F83687 /* Controllers */,
 				24DDF0642760468000F83687 /* Views */,
+				2481A15227F4FD98000553D3 /* AudioFiles */,
 				24BFCEE92739758B00C90032 /* Main.storyboard */,
 				24BFCEEE2739758D00C90032 /* LaunchScreen.storyboard */,
 				24BFCF342739786400C90032 /* Assets.xcassets */,
 				24BFCF382739799700C90032 /* Info.plist */,
-				2468455327F1562900A4B16F /* averageFFT.swift */,
-				2468455127EE614500A4B16F /* sineSweep.wav */,
-				2468454F27EE5F2600A4B16F /* pinkNoise.wav */,
 				24BFCF13273975C800C90032 /* TempiFFT */,
 			);
 			path = AcoustEQ;
@@ -213,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				246AA5F527B42BF700F92C75 /* dBMetering.swift */,
+				2468455327F1562900A4B16F /* averageFFT.swift */,
 				2468454D27EE5AE900A4B16F /* AVAudioPlayer.swift */,
 			);
 			path = Utils;

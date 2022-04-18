@@ -7,7 +7,6 @@
 
 import UIKit
 
-//TODO: FIX LANDSCAPE SCROLL VIEW
 
 // create protocol delegate to allow changing of parameters
 protocol setFreqResponseDelegate {
