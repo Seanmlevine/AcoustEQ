@@ -17,6 +17,7 @@
 		246AA41927B2B94E00169AF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246AA41827B2B94E00169AF9 /* AppDelegate.swift */; };
 		246AA5F627B42BF700F92C75 /* dBMetering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246AA5F527B42BF700F92C75 /* dBMetering.swift */; };
 		2481A15127F4E612000553D3 /* AVAudioRecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2481A15027F4E612000553D3 /* AVAudioRecordingViewController.swift */; };
+		248B33CB28107E2D008BC8B0 /* ChartsDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248B33CA28107E2D008BC8B0 /* ChartsDemo.swift */; };
 		24BFCEE62739758B00C90032 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BFCEE52739758B00C90032 /* SceneDelegate.swift */; };
 		24BFCEE82739758B00C90032 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BFCEE72739758B00C90032 /* MainViewController.swift */; };
 		24BFCEFB2739758D00C90032 /* AcoustEQTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BFCEFA2739758D00C90032 /* AcoustEQTests.swift */; };
@@ -63,6 +64,7 @@
 		246AA41827B2B94E00169AF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TempiFFT/AppDelegate.swift; sourceTree = "<group>"; };
 		246AA5F527B42BF700F92C75 /* dBMetering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = dBMetering.swift; path = AcoustEQ/Utils/dBMetering.swift; sourceTree = SOURCE_ROOT; };
 		2481A15027F4E612000553D3 /* AVAudioRecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AVAudioRecordingViewController.swift; path = AcoustEQ/Controllers/AVAudioRecordingViewController.swift; sourceTree = SOURCE_ROOT; };
+		248B33CA28107E2D008BC8B0 /* ChartsDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsDemo.swift; sourceTree = "<group>"; };
 		24BFCEE02739758B00C90032 /* AcoustEQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcoustEQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24BFCEE52739758B00C90032 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		24BFCEE72739758B00C90032 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				2481A15027F4E612000553D3 /* AVAudioRecordingViewController.swift */,
+				248B33CA28107E2D008BC8B0 /* ChartsDemo.swift */,
 				24578E0527F3F1B40064E943 /* TabBarController.swift */,
 				24BFCEE72739758B00C90032 /* MainViewController.swift */,
 				24DDF067276050E800F83687 /* FreqRespViewController.swift */,
@@ -430,6 +433,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24BFCF22273975C800C90032 /* SpectralViewController.swift in Sources */,
+				248B33CB28107E2D008BC8B0 /* ChartsDemo.swift in Sources */,
 				24BFCEE82739758B00C90032 /* MainViewController.swift in Sources */,
 				24BFCF2A273975C800C90032 /* TempiAudioInput.swift in Sources */,
 				244DD3A3275715240097EDC1 /* SpectrumView.swift in Sources */,

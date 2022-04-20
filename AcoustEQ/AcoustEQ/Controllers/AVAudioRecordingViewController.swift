@@ -22,6 +22,9 @@ class AVAudioRecordingViewController: UIViewController, AVAudioRecorderDelegate 
     var whistleRecorder: AVAudioRecorder!
     var whistlePlayer: AVAudioPlayer!
 
+    var userFrameSize = UserDefaults.standard.double(forKey: "frameSizeVal")
+    var userBandsPerOctave = UserDefaults.standard.integer(forKey: "octaveBandsVal")
+
     override func loadView() {
         view = UIView()
 
@@ -217,6 +220,56 @@ class AVAudioRecordingViewController: UIViewController, AVAudioRecorderDelegate 
             ac.addAction(UIAlertAction(title: "OK", style: .default))
             present(ac, animated: true)
         }
+        
+        let recordingFloat = readURLIntoFloats(audioURL: audioURL)
+        let fft = TempiFFT(withSize: Int(userFrameSize), sampleRate: 44100)
+        
+        fft.fftForward(recordingFloat.signal)
+        fft.calculateLogarithmicBands(minFrequency: 20, maxFrequency: 200000, bandsPerOctave: userBandsPerOctave)
+        
+        //TODO: Find out problem with Logarithmic bands copying value?
+        
+        let path = FileManager.default.urls(for: .documentDirectory,
+                                            in: .userDomainMask)[0].appendingPathComponent("myFile")
+
+        print(fft.bandMagnitudes!, fft.bandFrequencies!)
+        
+        let magstringArray = fft.bandMagnitudes.map { String($0) }
+        let magstring = magstringArray.joined(separator: ", ")
+        
+        let freqstringArray = fft.bandMagnitudes.map { String($0) }
+        let freqstring = freqstringArray.joined(separator: ", ")
+        
+        do {
+            try freqstring.write(to: path, atomically: true, encoding: .utf8)
+            //TODO: separate file path
+            try magstring.write(to: path, atomically: true, encoding: .utf8)
+            
+            
+        } catch let error {
+            // handle error
+            print("Error on writing strings to file: \(error)")
+        }
+        
+
+    }
+    
+    func readURLIntoFloats(audioURL: URL) -> (signal: [Float], rate: Double, frameCount: Int) {
+
+        let audioURL = AVAudioRecordingViewController.getWhistleURL()
+        print(audioURL)
+        let file = try! AVAudioFile(forReading: audioURL)
+        let format = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: file.fileFormat.sampleRate, channels: 1, interleaved: false) ?? AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 44100, channels: 1, interleaved: false)
+
+        let buf = AVAudioPCMBuffer(pcmFormat: format!, frameCapacity: AVAudioFrameCount(file.length))!
+        try! file.read(into: buf)
+
+        // this makes a copy, you might not want that
+        let floatArray = Array(UnsafeBufferPointer(start: buf.floatChannelData?[0], count:Int(buf.frameLength)))
+//        print(floatArray)
+        
+        return (signal: floatArray, rate: file.fileFormat.sampleRate, frameCount: Int(file.length))
+        
 
     }
     

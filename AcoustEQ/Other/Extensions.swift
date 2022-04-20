@@ -32,3 +32,21 @@ extension Comparable {
         return min(max(self, limits.lowerBound), limits.upperBound)
     }
 }
+
+
+extension Array {
+    var bytes: [UInt8] { withUnsafeBytes { .init($0) } }
+    var data: Data { withUnsafeBytes { .init($0) } }
+}
+extension ContiguousBytes {
+    func object<T>() -> T { withUnsafeBytes { $0.load(as: T.self) } }
+    func objects<T>() -> [T] { withUnsafeBytes { .init($0.bindMemory(to: T.self)) } }
+}
+//https://stackoverflow.com/questions/64234225/how-to-save-a-float-array-in-swift-as-txt-file
+
+//let values: [Float] = [-.pi, .zero, .pi, 1.5, 2.5]
+//let bytes = values.bytes  // [218, 15, 73, 192, 0, 0, 0, 0, 218, 15, 73, 64, 0, 0, 192, 63, 0, 0, 32, 64]
+//let data = values.data    // 20 bytes
+//let minusPI: Float = data.subdata(in: 0..<4).object() // -3.141593
+//let loaded1: [Float] = bytes.objects()  // [-3.141593, 0, 3.141593, 1.5, 2.5]
+//let loaded2: [Float] = data.objects()   // [-3.141593, 0, 3.141593, 1.5, 2.5]
