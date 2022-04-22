@@ -42,6 +42,7 @@ class FreqRespViewController: UIViewController, setFreqResponseDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemGray2
         
         countdownTimer?.isHidden = true
         closeRecording?.isHidden = true

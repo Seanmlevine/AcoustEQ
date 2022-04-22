@@ -121,12 +121,12 @@ class SpectrumView: UIView {
         // look up best practice for dBRef value!
         let dbRef: Float = 0.000002
         var fftArray: [Float] = []
-
+        
         for i in 0..<fft.numberOfBands {
             let mag = fft.magnitudeAtBand(i) * 2 / bufferSize //Change value here for buffer size (compensate for positive and negative frequency values)
             
-            // dBX shows graph values from 120 to -80
-            let db = ((20 * log10f(mag / dbRef)) / maxDB).clamped(to: -80...120)
+            // dBX shows graph values from 120 to -20
+            let db = ((20 * log10f(mag / dbRef)) / maxDB).clamped(to: -20...120)
             
             fftArray.append(db)
             

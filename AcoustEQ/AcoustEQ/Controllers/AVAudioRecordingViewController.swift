@@ -24,11 +24,13 @@ class AVAudioRecordingViewController: UIViewController, AVAudioRecorderDelegate 
 
     var userFrameSize = UserDefaults.standard.double(forKey: "frameSizeVal")
     var userBandsPerOctave = UserDefaults.standard.integer(forKey: "octaveBandsVal")
+    
+    public var recFFT = TempiFFT(withSize: 2048, sampleRate: 44100)
 
     override func loadView() {
         view = UIView()
 
-        view.backgroundColor = UIColor.gray
+        view.backgroundColor = .systemGray2
 
         stackView = UIStackView()
         stackView.spacing = 30
@@ -68,6 +70,7 @@ class AVAudioRecordingViewController: UIViewController, AVAudioRecorderDelegate 
         }
         
         setAirplayButton()
+        recFFT.windowType = .hanning
     }
     
     // MARK: - Loading Options if Permission fails
@@ -123,7 +126,7 @@ class AVAudioRecordingViewController: UIViewController, AVAudioRecorderDelegate 
 
         // 3
         let audioURL = AVAudioRecordingViewController.getWhistleURL()
-        print(audioURL.absoluteString)
+//        print(audioURL.absoluteString)
 
         // 4
         // TODO: - Change Settings if Necessary
@@ -201,6 +204,8 @@ class AVAudioRecordingViewController: UIViewController, AVAudioRecorderDelegate 
     }
     
     @objc func playTapped() {
+        
+        //MARK: Play Audio
         let audioURL = AVAudioRecordingViewController.getWhistleURL()
 
         do {
@@ -221,29 +226,84 @@ class AVAudioRecordingViewController: UIViewController, AVAudioRecorderDelegate 
             present(ac, animated: true)
         }
         
+        //MARK: Convert to Float
+        
         let recordingFloat = readURLIntoFloats(audioURL: audioURL)
-        let fft = TempiFFT(withSize: Int(userFrameSize), sampleRate: 44100)
         
-        fft.fftForward(recordingFloat.signal)
-        fft.calculateLogarithmicBands(minFrequency: 20, maxFrequency: 200000, bandsPerOctave: userBandsPerOctave)
+        //MARK: Find next pow of 2 for analyzing recording size
+    
+        var analysisBufSize = 2048
+        var limitReached = false
         
-        //TODO: Find out problem with Logarithmic bands copying value?
+        while !limitReached
+        {
+                
+                if analysisBufSize > recordingFloat.signal.count {
+                    analysisBufSize = analysisBufSize / 2
+                    limitReached = true
+                    break
+                } else {
+                    analysisBufSize = analysisBufSize * 2
+                }
+        }
+                    
+        //MARK: FFT of Audio File
+        recFFT = TempiFFT(withSize: analysisBufSize, sampleRate: 44100) // withSize is pow of 2 just less than size of final recording
         
+        
+        recFFT.fftForward(recordingFloat.signal)
+        recFFT.calculateLogarithmicBands(minFrequency: 20, maxFrequency: 200000, bandsPerOctave: userBandsPerOctave)
+        
+        let minDB: Float = -50.0
+        let count = recFFT.numberOfBands
+        var totalMagDB: [Float] = []
+        var logFreq: [Float] = []
+        
+        for i in 0..<count {
+            let magnitude = recFFT.magnitudeAtBand(i)
+
+            // Incoming magnitudes are linear, making it impossible to see very low or very high values. Decibels to the rescue!
+            var magnitudeDB = TempiFFT.toDB(magnitude)
+
+            // Normalize the incoming magnitude so that -Inf = 0
+            magnitudeDB = max(0, magnitudeDB + abs(minDB))
+            
+            totalMagDB.append(magnitudeDB)
+            
+            
+            let frequency = recFFT.frequencyAtBand(i)
+            
+            let frequencyLog = log(frequency)
+            logFreq.append(frequencyLog)
+            
+        }
+        
+        
+
+        //MARK: Send band information to graph
+        UserDefaults.standard.set(totalMagDB, forKey: "bandMagnitudesDB")
+        UserDefaults.standard.set(recFFT.bandMagnitudes!, forKey: "bandMagnitudes")
+        UserDefaults.standard.set(logFreq, forKey: "bandFrequenciesLog")
+        UserDefaults.standard.set(recFFT.bandFrequencies!, forKey: "bandFrequencies")
+        UserDefaults.standard.set(recFFT.numberOfBands, forKey: "bandsCount")
+        
+        
+        // Save magnitude and frequency values to a String file
         let path = FileManager.default.urls(for: .documentDirectory,
                                             in: .userDomainMask)[0].appendingPathComponent("myFile")
-
-        print(fft.bandMagnitudes!, fft.bandFrequencies!)
+        let path2 = FileManager.default.urls(for: .documentDirectory,
+                                            in: .userDomainMask)[0].appendingPathComponent("myFile2")
         
-        let magstringArray = fft.bandMagnitudes.map { String($0) }
+        let magstringArray = recFFT.bandMagnitudes.map { String($0) }
         let magstring = magstringArray.joined(separator: ", ")
         
-        let freqstringArray = fft.bandMagnitudes.map { String($0) }
+        let freqstringArray = recFFT.bandMagnitudes.map { String($0) }
         let freqstring = freqstringArray.joined(separator: ", ")
         
         do {
             try freqstring.write(to: path, atomically: true, encoding: .utf8)
             //TODO: separate file path
-            try magstring.write(to: path, atomically: true, encoding: .utf8)
+            try magstring.write(to: path2, atomically: true, encoding: .utf8)
             
             
         } catch let error {
@@ -254,24 +314,6 @@ class AVAudioRecordingViewController: UIViewController, AVAudioRecorderDelegate 
 
     }
     
-    func readURLIntoFloats(audioURL: URL) -> (signal: [Float], rate: Double, frameCount: Int) {
-
-        let audioURL = AVAudioRecordingViewController.getWhistleURL()
-        print(audioURL)
-        let file = try! AVAudioFile(forReading: audioURL)
-        let format = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: file.fileFormat.sampleRate, channels: 1, interleaved: false) ?? AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 44100, channels: 1, interleaved: false)
-
-        let buf = AVAudioPCMBuffer(pcmFormat: format!, frameCapacity: AVAudioFrameCount(file.length))!
-        try! file.read(into: buf)
-
-        // this makes a copy, you might not want that
-        let floatArray = Array(UnsafeBufferPointer(start: buf.floatChannelData?[0], count:Int(buf.frameLength)))
-//        print(floatArray)
-        
-        return (signal: floatArray, rate: file.fileFormat.sampleRate, frameCount: Int(file.length))
-        
-
-    }
     
     func setAirplayButton(){
         let buttonView  = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))

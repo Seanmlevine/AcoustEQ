@@ -31,3 +31,23 @@ func stopSound() {
     
 }
 
+func readURLIntoFloats(audioURL: URL) -> (signal: [Float], rate: Double, frameCount: Int) {
+
+    let audioURL = AVAudioRecordingViewController.getWhistleURL()
+
+    let file = try! AVAudioFile(forReading: audioURL)
+    let format = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: file.fileFormat.sampleRate, channels: 1, interleaved: false) ?? AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 44100, channels: 1, interleaved: false)
+
+    let buf = AVAudioPCMBuffer(pcmFormat: format!, frameCapacity: UInt32(file.length))
+    
+    try! file.read(into: buf!)
+
+    // this makes a copy, you might not want that
+    let floatArray = Array(UnsafeBufferPointer(start: buf?.floatChannelData?[0], count:Int(buf!.frameLength)))
+//        print(floatArray)
+    
+    return (signal: floatArray, rate: file.fileFormat.sampleRate, frameCount: Int(file.length))
+    
+
+}
+

@@ -71,7 +71,6 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="d0B-sJ-XBc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="1.5" id="2BK-GF-drO"/>
                             <constraint firstItem="G1a-TU-E26" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MWp-dx-vYH"/>
@@ -103,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2080" y="-542"/>
+            <point key="canvasLocation" x="2079.7101449275365" y="-542.41071428571422"/>
         </scene>
         <!--Recording-->
         <scene sceneID="RNp-j6-z5e">
@@ -241,7 +240,6 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="avi-8g-NKi"/>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="vxU-ke-ZUF" firstAttribute="centerX" secondItem="avi-8g-NKi" secondAttribute="centerX" id="V2f-i3-NtO"/>
                             <constraint firstItem="vxU-ke-ZUF" firstAttribute="centerY" secondItem="avi-8g-NKi" secondAttribute="centerY" id="h02-ls-tfR"/>
@@ -260,6 +258,22 @@
             </objects>
             <point key="canvasLocation" x="2080" y="195"/>
         </scene>
+        <!--Chart-->
+        <scene sceneID="BMu-eq-neq">
+            <objects>
+                <viewController id="tns-K3-Y2l" customClass="ChartController" customModule="AcoustEQ" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kA5-Hr-OFB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="U7R-Ty-gmG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Chart" image="chart.xyaxis.line" catalog="system" id="LlZ-N4-q0d"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cyu-IR-YH8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3850" y="154"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Nlb-qX-4rs">
             <objects>
@@ -273,6 +287,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="b9c-Dz-7sF"/>
                         <segue destination="bGz-Ar-nAS" kind="relationship" relationship="viewControllers" id="kCO-qW-hXs"/>
                         <segue destination="KxY-Ya-d6n" kind="relationship" relationship="viewControllers" id="0Sx-cN-QcU"/>
+                        <segue destination="tns-K3-Y2l" kind="relationship" relationship="viewControllers" id="kXe-cv-vNk"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mqb-vY-iPH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -282,6 +297,7 @@
     </scenes>
     <color key="tintColor" systemColor="systemRedColor"/>
     <resources>
+        <image name="chart.xyaxis.line" catalog="system" width="128" height="101"/>
         <image name="gear.circle" catalog="system" width="128" height="121"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="record.circle" catalog="system" width="128" height="121"/>
